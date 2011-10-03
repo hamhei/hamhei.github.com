@@ -13,10 +13,10 @@
         enchant();
         window.onload = function() {
             var game = new Game(320, 320);
-            game.preload('../submodule/enchant.js/images/chara0.gif');
+            game.preload('../img/chara0.gif');
             game.onload = function() {
                 var player = new Sprite(16, 24);
-                player.image = game.assets['../submodule/enchant.js/images/chara0.gif'];
+                player.image = game.assets['../img/chara0.gif'];
                 game.rootScene.addChild(player);
                 player.direction = 0;
                 player.walk=0;
