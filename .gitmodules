@@ -1,0 +1,3 @@
+[submodule "submodule/hamcolor_page"]
+	path = submodule/hamcolor_page
+	url = git@github.com:hamhei/hamcolor.git
