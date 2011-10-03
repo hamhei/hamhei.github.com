@@ -1,3 +1,6 @@
 [submodule "submodule/hamcolor_page"]
 	path = submodule/hamcolor_page
 	url = git@github.com:hamhei/hamcolor.git
+[submodule "submodule/enchant.js"]
+	path = submodule/enchant.js
+	url = git://github.com/wise9/enchant.js.git
