@@ -12,23 +12,42 @@
         <script type="text/javascript"><!--
         enchant();
         window.onload = function() {
+            var n = 5;
             var game = new Game(320, 320);
-            game.preload('../img/chara0.gif');
+            var originX, originY;
+            game.preload('../img/miniham.png', '../img/box.png', '../img/map0.gif');
             game.onload = function() {
-                var player = new Sprite(16, 24);
-                player.image = game.assets['../img/chara0.gif'];
-                game.rootScene.addChild(player);
-                player.direction = 0;
-                player.walk=0;
-                player.addEventListener('enterframe', function(e) {
-                        if (game.input.left){this.x -= 1.0;this.direction = 1;}
-                        if (game.input.right){this.x += 1.0;this.direction = 2;}
-                        if (game.input.up) {this.y -= 1.0;this.direction = 3;}
-                        if (game.input.down){ this.y += 1.0;this.direction = 0;}
-                        if (!(game.frame % 5)){this.walk++;}
-                        if(this.walk == 3){this.walk = 0;}
-                        this.frame = this.direction*6 + this.walk;
+
+                var bg = new Sprite(320, 320);
+                bg.image = game.assets['../img/map0.gif'];
+                game.rootScene.addChild(bg);         
+             
+                var box = new Array(n);
+                for(var i = 0; i < n; i++){
+                    box[i] = new Sprite(35, 20);
+                    box[i].image = game.assets['../img/box.png'];
+                    box[i].x = i * 40.0;
+                    game.rootScene.addChild(box[i]);
+                }
+
+                bg.addEventListener(enchant.Event.TOUCH_START, function(e) {
+                        var player = new Sprite(35, 20);
+                        player.image = game.assets['../img/box.png'];
+                        player.x = e.localX - player.width/2.0;
+                        player.y = e.localY - player.height/2.0;
+                        game.rootScene.addChild(player);
                 });
+
+                for(var i = 0; i < n; i++){
+                    box[i].addEventListener(enchant.Event.TOUCH_START, function(e){
+                            originX = e.x - this.x;
+                            originY = e.y - this.y;
+                            });
+                    box[i].addEventListener(enchant.Event.TOUCH_MOVE, function(e){
+                            this.x = e.x - originX;
+                            this.y = e.y - originY;
+                            });
+                }
             }
             game.start();
         }        
@@ -39,7 +58,6 @@
             }
     </style>
     </head>
-    <body>
-    
+    <body> 
     </body>
 </html>
