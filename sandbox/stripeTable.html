@@ -1,0 +1,83 @@
+<html>
+  <head>
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<style type="text/css">
+	  <!--
+		  table {background: #777777 }
+		  #title th{ background: #222222; color: white; }
+		  th,td { padding:5px;}
+		  .odd { background:#aaaaaa; }
+		  .even { background:#f2f2f2 }
+		  .hover { background: #b2d8ff; }
+	  -->
+	</style>
+	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+	<script type="text/javascript">google.load("jquery", "1.6");</script>
+	<script type="text/javascript">
+	  $(function(){
+	      $("tr:nth-child(odd)").addClass("odd");
+	      $("tr:nth-child(even)").addClass("even");
+	      $("tr:not(:first-child").mouseover(function(){
+	          $(this).addClass("hover");
+          }).mouseout(function(){
+	          $(this).removeClass("hover");
+	      });
+	  });
+	</script>
+  </head>
+  <body>
+	<h1>CSS Members Table:</h1>
+	<table>
+	  <tr id="title">
+		<th>name</th>
+		<th>age</th>
+		<th>skill</th>
+		<th>local</th>
+		<th>voice</th>
+	  </tr>
+	  <!-- members-->
+	  <tr>
+		<th>hamhei</th>
+		<th>24</th>
+		<th>sports</th>
+		<th>yamanashi</th>
+		<th>kushi kushi</th>
+	  </tr>
+	  <tr>
+		<th>monja</th>
+		<th>23</th>
+		<th>design</th>
+		<th>kagawa</th>
+		<th>poyu</th>
+	  </tr>
+	  <tr>
+		<th>daichi</th>
+		<th>20(will)</th>
+		<th>hadaka</th>
+		<th>kagawa</th>
+		<th>mokyu</th>
+	  </tr>
+	  <tr>
+		<th>koni_T</th>
+		<th>?</th>
+		<th>develop?</th>
+		<th>?</th>
+		<th>koni koni</th>
+	  </tr>
+	  <tr>
+		<th>btomihisa</th>
+		<th>35</th>
+		<th>interview</th>
+		<th>tokyu</th>
+		<th>marry me</th>
+	  </tr>
+	  <tr>
+		<th>tomomi</th>
+		<th>17</th>
+		<th>love</th>
+		<th>tokyu</th>
+		<th>I love you</th>
+	  </tr>
+	</table>
+  <body>
+</html>
