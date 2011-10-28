@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-        <title>lot</title>
+        <title>Where is my pretty Mac-tan!?</title>
         <script type="text/javascript" src="http://www.google.com/jsapi"></script>
         <script type="text/javascript">google.load("jquery", "1.6");</script>
         <script type="text/javascript" src="../js/enchant.js"></script>
@@ -13,23 +13,15 @@
         enchant();
         window.onload = function() {
             var n = 5;
+            var x = 2;
             var game = new Game(320, 320);
-            var originX, originY;
+            var originX, originY, startX, startY;
             game.preload('../img/miniham.png', '../img/box.png', '../img/map0.gif');
             game.onload = function() {
 
                 var bg = new Sprite(320, 320);
                 bg.image = game.assets['../img/map0.gif'];
-                game.rootScene.addChild(bg);         
-             
-                var box = new Array(n);
-                for(var i = 0; i < n; i++){
-                    box[i] = new Sprite(35, 20);
-                    box[i].image = game.assets['../img/box.png'];
-                    box[i].x = i * 40.0;
-                    game.rootScene.addChild(box[i]);
-                }
-
+                game.rootScene.addChild(bg);
                 bg.addEventListener(enchant.Event.TOUCH_START, function(e) {
                         var player = new Sprite(35, 20);
                         player.image = game.assets['../img/box.png'];
@@ -38,16 +30,49 @@
                         game.rootScene.addChild(player);
                 });
 
+                var box = new Array(n);
                 for(var i = 0; i < n; i++){
+                    box[i] = new Sprite(35, 20);
+                    box[i].image = game.assets['../img/box.png'];
+                    box[i].x = i * 40.0;
+                    game.rootScene.addChild(box[i]); 
                     box[i].addEventListener(enchant.Event.TOUCH_START, function(e){
                             originX = e.x - this.x;
                             originY = e.y - this.y;
-                            });
+                            });   
                     box[i].addEventListener(enchant.Event.TOUCH_MOVE, function(e){
                             this.x = e.x - originX;
                             this.y = e.y - originY;
                             });
                 }
+
+                var chara = new Array(x);
+                var charaBox = new Array(x);
+                for(var i = 0; i < n; i++){
+                    chara[i] = new Sprite(28, 30);
+                    chara[i].image = game.assets['../img/miniham.png'];
+                    chara[i].x = i * 40.0 + n * 40;
+                    game.rootScene.addChild(chara[i]);
+                    chara[i].addEventListener(enchant.Event.TOUCH_START, function(e){
+                            originX = e.x - this.x;
+                            originY = e.y - this.y;
+                            startX = this.x;
+                            startY = this.y;
+                            });   
+                    chara[i].addEventListener(enchant.Event.TOUCH_MOVE, function(e){
+                            this.x = e.x - originX;
+                            this.y = e.y - originY;
+                            });
+                    chara[i].addEventListener(enchant.Event.TOUCH_END, function(e){
+                            if(false){
+                                this.x = startX;
+                                this.y = startY;
+                            } else {
+                                charaBox[i] = box[i];
+                            }
+                    });
+                }
+ 
             }
             game.start();
         }        
